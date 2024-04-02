@@ -69,10 +69,10 @@ export class UserService {
     );
   }
 
-  getRefreshToken(userRefreshToken: any) {
+  getRefreshToken(dto: any) {
     return this.http.post(
-      environment.apiUrl + 'ApplicationUsers/RefreshToken',
-      userRefreshToken
+      environment.apiUrl + '/ApplicationUsers/RefreshToken',
+      dto
     );
   }
 

@@ -46,7 +46,8 @@ public class ApplicationUsers : EndpointGroupBase
         var response = await sender.Send(loginRequest);
         return response.Succeeded ? Results.Ok(response.Data) : Results.BadRequest(response.Errors);
     }
-    
+
+    [AllowAnonymous]
     public async Task<IResult> RefreshToken([FromBody] Tokens token, ISender sender)
     {
         var refreshTokenRequest = new RefreshTokenRequest

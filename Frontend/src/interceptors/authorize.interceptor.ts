@@ -52,7 +52,7 @@ export class HttpInterceptorService implements HttpInterceptor {
     if (!dataToSend.accessToken || !dataToSend.refreshToken) {
       this.router.navigate(['/']);
       return throwError(
-        () => new Error('Tokeni nisu dostupni, preusmeravanje na prijavu.')
+        () => new Error('Tokens are missing, redirecting to login page.')
       );
     }
     return this.userService.getRefreshToken(dataToSend).pipe(
