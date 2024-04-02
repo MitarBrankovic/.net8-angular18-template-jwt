@@ -32,7 +32,7 @@ public class GetByEmailCommand : IRequestHandler<GetByEmailRequest, Result>
         var user = await _applicationUsersRepository.GetUser(request.Email);
         if (user == null)
         {
-            return Result.Failure(["Korisnik sa ovim email-om ne postoji."]);
+            return Result.Failure(["User not found"]);
         }
 
         var response = _mapper.Map<GetByEmailResponseDto>(user);

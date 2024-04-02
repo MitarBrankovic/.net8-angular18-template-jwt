@@ -43,7 +43,7 @@ public class RegistrationCommand : IRequestHandler<RegistrationRequest, Result>
 
             if (existingUser != null)
             {
-                return Result.Failure(["Korisnik sa ovim email-om ne postoji."]);
+                return Result.Failure(["User with this email already exists."]);
             }
             
             var newUser = _mapper.Map<ApplicationUser>(request.RegistrationDto);
@@ -59,7 +59,7 @@ public class RegistrationCommand : IRequestHandler<RegistrationRequest, Result>
             var result = await _applicationUsersRepository.CreateUser(newUser);
             return result != Guid.Empty
                 ? Result.Success(result)
-                : Result.Failure(["Greška prilikom kreiranja korisnika."]);
+                : Result.Failure(["Failed to register user."]);
         }
         catch (Exception ex)
         {

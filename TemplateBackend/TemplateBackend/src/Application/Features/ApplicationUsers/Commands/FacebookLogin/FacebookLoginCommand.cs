@@ -46,7 +46,7 @@ public class FacebookLoginCommand: IRequestHandler<FacebookLoginRequest, Result>
 
             if (response.IsSuccessStatusCode)
             {
-                return Result.Failure(["Neuspešna autentifikacija preko Facebook-a."]);
+                return Result.Failure(["Failed authentication via Facebook."]);
             }
             
             var responseAsString = await response.Content.ReadAsStringAsync();
@@ -55,14 +55,14 @@ public class FacebookLoginCommand: IRequestHandler<FacebookLoginRequest, Result>
             var user = await _applicationUsersRepository.GetUser(payload.Email);
             if (user == null)
             {
-                return Result.Failure(["Korisnik sa ovim email-om ne postoji."]);
+                return Result.Failure(["User with this email does not exist."]);
             }
             else
             {
                 var token = _jWTManagerRepository.GenerateToken(user.Email);
                 if (token == null)
                 {
-                    return Result.Failure(["Neuspešno generisanje tokena."]);
+                    return Result.Failure(["Failed to generate jwt token."]);
                 }
 
                 UserRefreshTokens userRefreshToken = new()

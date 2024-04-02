@@ -43,6 +43,7 @@ public class ApplicationUsersRepository : IApplicationUsersRepository
             user.Password = updatedUser.Password;
             user.DateOfBirth = updatedUser.DateOfBirth;
             user.ProfilePicture = updatedUser.ProfilePicture;
+            _context.Users.Update(user);
             await _context.SaveChangesAsync();
             return user;
         }

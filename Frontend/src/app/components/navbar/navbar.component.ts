@@ -60,17 +60,9 @@ export class NavbarComponent {
   }
 
   logout() {
-    this.userService.logout().subscribe(
-      (response: any) => {
-        console.log(response);
-        this.userService.setIsAuthenticated(false);
-        this.userService.clearJwtToken();
-        this.router.navigate(['/']);
-      },
-      (error: any) => {
-        this.toastersService.handleError(error);
-      }
-    );
+    this.userService.setIsAuthenticated(false);
+    this.userService.clearJwtToken();
+    this.router.navigate(['/']);
   }
 
   homeRedirect() {

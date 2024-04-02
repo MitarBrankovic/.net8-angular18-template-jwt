@@ -76,9 +76,9 @@ export class UserService {
     );
   }
 
-  editUser(dto: any): any {
+  updateUser(dto: any): any {
     return this.http.put(
-      environment.apiUrl + '/ApplicationUsers/EditUser',
+      environment.apiUrl + '/ApplicationUsers/UpdateUser',
       dto
     );
   }

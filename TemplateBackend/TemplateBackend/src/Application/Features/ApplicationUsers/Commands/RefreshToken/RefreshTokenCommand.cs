@@ -36,14 +36,14 @@ public class RefreshTokenHandler: IRequestHandler<RefreshTokenRequest, Result>
 
         if (savedRefreshToken.RefreshToken != request.OldToken.RefreshToken)
         {
-            return Result.Failure(["Nevalidni refresh token."]);
+            return Result.Failure(["Not valid refresh token."]);
         }
 
         var newJwtToken = _jWTManagerRepository.GenerateRefreshToken(username);
 
         if (newJwtToken == null)
         {
-            return Result.Failure(["Greška prilikom generisanja novog tokena."]);
+            return Result.Failure(["Failed to generate new token."]);
         }
 
         UserRefreshTokens obj = new UserRefreshTokens

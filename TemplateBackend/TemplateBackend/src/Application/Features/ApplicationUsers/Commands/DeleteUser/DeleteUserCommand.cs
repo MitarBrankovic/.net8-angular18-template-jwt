@@ -26,13 +26,13 @@ public class DeleteUserCommand: IRequestHandler<DeleteUserRequest, Result>
         try
         {
             var user = await _applicationUsersRepository.GetUser(request.Email);
-            if (user == null) return Result.Failure(["Korisnik sa ovim email-om ne postoji."]);
+            if (user == null) return Result.Failure(["User not found"]);
             var result = await _applicationUsersRepository.DeleteUser(request.Email);
             return Result.Success(result);
         }
         catch (Exception)
         {
-            return Result.Failure(["Greška prilikom brisanja korisnika."]);
+            return Result.Failure(["Failed to delete user"]);
         }
     }
 }

@@ -33,17 +33,17 @@ public class LoginCommand : IRequestHandler<LoginRequest, Result>
 
             if (user == null)
             {
-                return Result.Failure(["Korisnik sa ovim email-om ne postoji."]);
+                return Result.Failure(["User with this email does not exist."]);
             }
             
             var userWithCredentialsExists = await _applicationUsersRepository.IsValidUserAsync(request.Username, request.Password);
 
-            if (!userWithCredentialsExists) return Result.Failure(["Pogrešni kredencijali."]);
+            if (!userWithCredentialsExists) return Result.Failure(["Wrong credentials."]);
 
             var token = _jwtManagerRepository.GenerateToken(request.Username);
             if (token == null)
             {
-                return Result.Failure(["Neuspešno generisanje tokena."]);
+                return Result.Failure(["Failed to generate jwt token."]);
             }
 
             UserRefreshTokens userRefreshToken = new()

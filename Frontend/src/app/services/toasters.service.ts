@@ -37,10 +37,10 @@ export class ToastersService {
       if (error && typeof error === 'object') {
         if (
           error.hasOwnProperty('error') &&
-          typeof error.error === 'string' &&
+          typeof error.error[0] === 'string' &&
           error.error.length > 0
         ) {
-          const errorMessage = this.extractErrorMessage(error.error);
+          const errorMessage = this.extractErrorMessage(error.error[0]);
           this.showError(errorMessage);
         }
 

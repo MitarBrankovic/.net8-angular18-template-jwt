@@ -164,6 +164,36 @@
         ]
       }
     },
+    "/api/ApplicationUsers/UpdateUser": {
+      "put": {
+        "tags": [
+          "ApplicationUsers"
+        ],
+        "operationId": "UpdateUser",
+        "requestBody": {
+          "x-name": "dto",
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/UpdateUserDto"
+              }
+            }
+          },
+          "required": true,
+          "x-position": 1
+        },
+        "responses": {
+          "200": {
+            "description": ""
+          }
+        },
+        "security": [
+          {
+            "JWT": []
+          }
+        ]
+      }
+    },
     "/api/ApplicationUsers/GetByEmail/{email}": {
       "get": {
         "tags": [
@@ -264,6 +294,49 @@
           "password": {
             "type": "string",
             "minLength": 1
+          },
+          "dateOfBirth": {
+            "type": "string",
+            "format": "date"
+          },
+          "profilePicture": {
+            "type": "string",
+            "nullable": true
+          }
+        }
+      },
+      "UpdateUserDto": {
+        "allOf": [
+          {
+            "$ref": "#/components/schemas/ApplicationUserDto"
+          },
+          {
+            "type": "object",
+            "additionalProperties": false,
+            "properties": {
+              "password": {
+                "type": "string",
+                "nullable": true
+              }
+            }
+          }
+        ]
+      },
+      "ApplicationUserDto": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "id": {
+            "type": "string",
+            "format": "guid"
+          },
+          "fullName": {
+            "type": "string",
+            "nullable": true
+          },
+          "email": {
+            "type": "string",
+            "nullable": true
           },
           "dateOfBirth": {
             "type": "string",

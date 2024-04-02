@@ -11,6 +11,8 @@ using Google.Apis.Auth.OAuth2;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http.HttpResults;
 using Microsoft.AspNetCore.Mvc;
+using TemplateBackend.Application.Features.ApplicationUsers.Queries;
+using TemplateBackend.Application.Features.ApplicationUsers.Commands.UpdateUser;
 
 namespace TemplateBackend.Web.Endpoints;
 
@@ -27,6 +29,7 @@ public class ApplicationUsers : EndpointGroupBase
             .MapPost(FacebookLogin, "FacebookLogin/{accessToken}")
             .MapPost(RegisterUser, "RegisterUser")
             .MapDelete(DeleteUser, "DeleteUser/{email}")
+            .MapPut(UpdateUser, "UpdateUser")
             .MapGet(GetByEmail, "GetByEmail/{email}");
 
     }
@@ -107,6 +110,17 @@ public class ApplicationUsers : EndpointGroupBase
         {
             Email = email
         };
+        var response = await sender.Send(request);
+        return response.Succeeded ? Results.Ok(response.Data) : Results.BadRequest(response.Errors);
+    }
+
+    public async Task<IResult> UpdateUser(UpdateUserDto dto, ISender sender)
+    {
+        var request = new UpdateUserRequest
+        {
+            UpdateUserDto = dto
+        };
+
         var response = await sender.Send(request);
         return response.Succeeded ? Results.Ok(response.Data) : Results.BadRequest(response.Errors);
     }

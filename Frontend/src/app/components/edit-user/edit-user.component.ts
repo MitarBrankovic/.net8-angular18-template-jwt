@@ -71,6 +71,8 @@ export class EditUserComponent {
   }
 
   editUser() {
+    if (!this.isFormValid())
+      return this.toastersService.showError('Please fill in all fields');
     const dto = {
       fullName: this.fullNameFormControl.value,
       email: this.emailFormControl.value,
@@ -81,7 +83,7 @@ export class EditUserComponent {
       ),
     };
 
-    this.userService.editUser(dto).subscribe(
+    this.userService.updateUser(dto).subscribe(
       (response: any) => {
         this.toastersService.showSuccess('User edited successfully');
         this.router.navigate(['/']);
@@ -89,6 +91,15 @@ export class EditUserComponent {
       (error: any) => {
         this.toastersService.handleError(error);
       }
+    );
+  }
+
+  isFormValid() {
+    return (
+      this.fullNameFormControl.valid &&
+      this.emailFormControl.valid &&
+      this.passwordFormControl.valid &&
+      this.dateOfBirthFormControl.valid
     );
   }
 }

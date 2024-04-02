@@ -47,20 +47,20 @@ public class GoogleLoginCommand: IRequestHandler<GoogleLoginRequest, Result>
 
             if (payload == null)
             {
-                return Result.Failure(["Neuspešna autentifikacija sa Google tokenom."]);
+                return Result.Failure(["Failed authentication via Google."]);
             }
      
             var user = await _applicationUsersRepository.GetUser(payload.Email);
             if (user == null)
             {
-                return Result.Failure(["Korisnik sa ovim email-om ne postoji."]);
+                return Result.Failure(["User with this email does not exist."]);
             }
             else
             {
                 var token = _jWTManagerRepository.GenerateToken(user.Email);
                 if (token == null)
                 {
-                    return Result.Failure(["Neuspešno generisanje tokena."]);
+                    return Result.Failure(["Failed to generate token."]);
                 }
 
                 UserRefreshTokens userRefreshToken = new()
