@@ -1,0 +1,27 @@
+<div class="login-container">
+    <form class="login-form">
+      <h2>Login</h2>
+      <mat-form-field class="margin-bottom">
+        <mat-label>Email</mat-label>
+        <input type="email" matInput [formControl]="emailFormControl" placeholder="Ex. pat@example.com" autocomplete="off">
+        @if (emailFormControl.hasError('email') && !emailFormControl.hasError('required')) {
+          <mat-error>Please enter a valid email address</mat-error>
+        }
+        @if (emailFormControl.hasError('required')) {
+          <mat-error>Email is <strong>required</strong></mat-error>
+        }
+      </mat-form-field>
+      <mat-form-field>
+        <mat-label>Password</mat-label>
+        <input type="password" matInput [formControl]="passwordFormControl" placeholder="Password123!" autocomplete="new-password">
+        @if (passwordFormControl.hasError('password') && !passwordFormControl.hasError('required')) {
+          <mat-error>Please enter a valid password</mat-error>
+        }
+        @if (emailFormControl.hasError('required')) {
+          <mat-error>Password is <strong>required</strong></mat-error>
+        }
+      </mat-form-field>
+      <mat-checkbox class="margin-bottom" [(ngModel)]="rememberMe" [ngModelOptions]="{standalone: true}">Remember me</mat-checkbox>
+      <button mat-raised-button color="primary" type="button" (click)="login()">Login</button>
+    </form>
+  </div>

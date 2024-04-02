@@ -1,0 +1,27 @@
+nav {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background: linear-gradient(to right, rgb(255, 226, 234), rgb(244, 227, 253));
+  padding: 5px;
+  color: white;
+}
+
+.left-side {
+  display: flex;
+  align-items: center;
+}
+
+.logo {
+  margin-right: 10px;
+  cursor: pointer;
+}
+
+.logo img {
+  width: 45px;
+  height: 45px;
+}
+
+.right-side {
+  display: flex;
+}

@@ -1,0 +1,50 @@
+{
+  "root": true,
+  "ignorePatterns": ["projects/**/*", "*.html"],
+  "overrides": [
+    {
+      "files": ["*.ts"],
+      "parserOptions": {
+        "project": ["tsconfig.json"],
+        "createDefaultProgram": true
+      },
+      "extends": [
+        "plugin:@angular-eslint/recommended",
+        "plugin:@angular-eslint/template/process-inline-templates",
+        "prettier",
+        "plugin:prettier/recommended"
+      ],
+      "rules": {
+        "prettier/prettier": ["error", {}, { "usePrettierrc": true }],
+        "@typescript-eslint/no-unused-vars": ["error"],
+        "@typescript-eslint/no-explicit-any": ["off"],
+        "unused-imports/no-unused-imports": "error",
+        "no-console": ["error", { "allow": ["error"] }],
+        "quotes": ["error", "single"],
+        "semi": ["error", "always"],
+        "@angular-eslint/component-class-suffix": [
+          "error",
+          {
+            "suffixes": ["Dialog", "Component"]
+          }
+        ],
+        "@angular-eslint/directive-selector": [
+          "error",
+          {
+            "type": "attribute",
+            "style": "camelCase"
+          }
+        ],
+        "@angular-eslint/component-selector": [
+          "error",
+          {
+            "type": "element",
+            "prefix": "app",
+            "style": "kebab-case"
+          }
+        ]
+      },
+      "plugins": ["prettier", "unused-imports"]
+    }
+  ]
+}

@@ -47,7 +47,7 @@ public class RegistrationCommand : IRequestHandler<RegistrationRequest, Result>
             }
             
             var newUser = _mapper.Map<ApplicationUser>(request.RegistrationDto);
-            newUser.PictureFolderName = Guid.NewGuid();
+            //newUser.PictureFolderName = Guid.NewGuid();
 
             //if (!string.IsNullOrEmpty(request.RegistrationDto?.ProfilePicture))
             //{

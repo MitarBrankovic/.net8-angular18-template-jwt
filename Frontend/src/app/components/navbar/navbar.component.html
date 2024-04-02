@@ -1,0 +1,22 @@
+<nav>
+    <div class="left-side">
+      <div class="logo" (click)="homeRedirect()">
+        <!-- Add your logo here -->
+        <img src="assets/Angular_logo.png" alt="Logo"  />
+      </div>
+      <button mat-button color="primary">Home</button>
+      <button mat-button color="primary">About</button>
+    </div>
+    <div class="right-side">
+        @if (isLoggedIn$ | async){
+            <button mat-button color="primary" [matMenuTriggerFor]="menu">Hello, {{username()}}</button>
+            <mat-menu #menu="matMenu">
+              <button mat-menu-item color="primary" (click)="editUser()">Edit user</button>
+              <button mat-menu-item color="primary" (click)="logout()">Logout</button>
+            </mat-menu>
+        } @else {
+            <button mat-button color="primary" (click)="registerRedirect()">Register</button>
+            <button mat-button color="primary" (click)="loginRedirect()">Login</button>
+        }
+    </div>
+</nav>
