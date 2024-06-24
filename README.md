@@ -5,6 +5,7 @@ This template is simplified version of [Jason-Taylor template](https://github.co
 ## How to use it?
 
 - clone / download
+- set Web project as startup project
 - rename solution _(optional)_
 - change connection string in **appsettings.json**
 - add APIs for google and facebook login in **appsettings.json** _(optional)_
